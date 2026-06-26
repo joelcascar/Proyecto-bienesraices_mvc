@@ -7,25 +7,33 @@ class Router
 
     public $rutasGET = [];
     public $rutasPOST = [];
+
+    // Llenamos el arreglo de rutas de tipo Get con su función.
     public function get($url, $fn)
     {
         $this->rutasGET[$url] = $fn;
     }
+    // Llenamos el arrelgo de rutas POST con su función
     public function post($url, $fn)
     {
         $this->rutasPOST[$url] = $fn;
     }
+    // Este método valida si las rutas existen en este router y que soporten metodos POST o GET
     public function comprobarRutas()
     {
         session_start();
         $auth = $_SESSION["login"] ?? null;
         // Arreglo de rutas protegidas
         $rutasProtegidas = ["/admin", "/propiedades/crear", "/propiedades/actualizar", "/propiedades/eliminar", "/vendedores/crear", "/vendedores/actualizar", "/vendedores/eliminar", "/admin/blogs", "/admin/blogs/crear", "/admin/blogs/actualizar", "/admin/blogs/eliminar"];
+        // Leemos la ruta despues del index. ejempl;o: /propiedades/crear
         $urlActual = $_SERVER["PATH_INFO"] ?? "/";
+        // obtenemos si la ruta es post o get.
         $metodo = $_SERVER["REQUEST_METHOD"];
         if ($metodo === "GET") {
+            // obtenemos la función de la ruta actual de tipo GET.
             $fn = $this->rutasGET[$urlActual] ?? null;
         } else {
+            // obtenemos la función de la ruta actual de tipo POST.
             $fn = $this->rutasPOST[$urlActual] ?? null;
         }
         // Proteger las rutas 
