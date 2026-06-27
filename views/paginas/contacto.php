@@ -6,12 +6,12 @@
         <p class="alerta exito"><?php echo s($mensaje); ?></p>
     <?php endif; ?>
     <picture>
-        <source srcset="/public/build/img/destacada3.webp" type="image/webp">
-        <img loading="lazy" width="200" height="300" src="/public/build/img/destacada3.jpg" alt="imagen Contacto">
+        <source srcset="/build/img/destacada3.webp" type="image/webp">
+        <img loading="lazy" src="/build/img/destacada3.jpg" alt="imagen Contacto">
     </picture>
 
     <h2>Llene el formulario de Contacto</h2>
-    <form class="formulario" action="/public/index.php/contacto" method="POST">
+    <form class="formulario" action="/contacto" method="POST">
         <fieldset>
             <legend>Informacion Personal</legend>
             <label for="nombre">Nombre</label>

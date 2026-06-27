@@ -1,40 +1,42 @@
 <?php
+
 namespace Model;
-class Vendedor extends ActiveRecord{
+
+class Vendedor extends ActiveRecord
+{
     protected static $tabla = 'vendedores';
     // atributos de la base de datos
-   protected static $columnasDB = ["id", "nombre", "apellido", "telefono"];
-   // definimos los atributos de la clase 
-   public $id;
-   public $nombre;
-   public $apellido;
-   public $telefono;
+    protected static $columnasDB = ["id", "nombre", "apellido", "telefono"];
+    // definimos los atributos de la clase 
+    public $id;
+    public $nombre;
+    public $apellido;
+    public $telefono;
 
-   public function __construct($args = [])
-   {
-       $this->id = $args["id"] ?? null;
-       $this->nombre = $args["nombre"] ?? "";
-       $this->apellido = $args["apellido"] ?? "";
-       $this->telefono = $args["telefono"] ?? "";
-   }
-
-   public function validar()
-   {
-    if(!$this->nombre){
-        self::$errores[] = "El nombre es obligatorio";
-    }
-    if(!$this->apellido){
-        self::$errores[] = "El apellido es obligatorio";
-    }
-    if(!$this->telefono){
-        self::$errores[] = "El telefono es obligatorio";
-    }
-    if(!preg_match("/[0-9]{10}/", $this->telefono)){
-        self::$errores[] = "Formato no valido";
+    public function __construct($args = [])
+    {
+        $this->id = $args["id"] ?? null;
+        $this->nombre = $args["nombre"] ?? "";
+        $this->apellido = $args["apellido"] ?? "";
+        $this->telefono = $args["telefono"] ?? "";
     }
 
+    public function validar()
+    {
+        if (!$this->nombre) {
+            self::$errores[] = "ERROR: EL Nombre es obligatorio";
+        }
+        if (!$this->apellido) {
+            self::$errores[] = "ERROR: EL Apellido es obligatorio";
+        }
+        if (!$this->telefono) {
+            self::$errores[] = "ERROR: EL Teléfono es obligatorio";
+        }
 
-    return self::$errores;
-   }
+        if (!preg_match('/[0-9]{10}/', $this->telefono)) {
+            self::$errores[] = "ERROR: El teléfono no es válido ";
+        }
 
+        return self::$errores;
+    }
 }

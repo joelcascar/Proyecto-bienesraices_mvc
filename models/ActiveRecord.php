@@ -68,7 +68,7 @@ class ActiveRecord
         // Cuando se insertaron los datos correctamente
         if ($query) {
             // funcion para redireccionar al usuario
-            header("location: /public/index.php/{$url}?resultado=1");
+            header("location: {$url}?resultado=1");
             // query string con dos o mas propiedad - valor
             //header("location: ./../index.php?resultado=1&numero=10");
         }
@@ -95,7 +95,7 @@ class ActiveRecord
         // si el $query realizo bien la actualizacion redirecdiona a la persona
         if ($query) {
             // funcion para redireccionar al usuario
-            header("location: /public/index.php/{$url}?resultado=2");
+            header("location: {$url}?resultado=2");
             // query string con dos o mas propiedad - valor
             //header("location: ./../index.php?resultado=1&numero=10");
         }
@@ -114,7 +114,7 @@ class ActiveRecord
         // verificamos si la consulta se realizo correctamente
         if ($query) {
             $this->borrarImagen();
-            header("location: /public/index.php/{$url}?resultado=3");
+            header("location: {$url}?resultado=3");
         }
     }
 

@@ -11,6 +11,7 @@ use Controllers\PaginaController;
 try {
     $router = new Router();
 
+    // Zona privada
     // CRUD propiedades
     $router->get("/admin", [PropiedadController::class, "index"]); // en los corchetes primero busca la clase y despues el método.
     $router->get("/propiedades/crear", [PropiedadController::class, "crear"]);
@@ -26,6 +27,14 @@ try {
     $router->post("/vendedores/actualizar", [VendedorController::class, "actualizar"]);
     $router->post("/vendedores/eliminar", [VendedorController::class, "eliminar"]);
 
+    // CRUD de Blog
+    $router->get("/blog/crear", [BlogController::class, "crear"]);
+    $router->post("/blog/crear", [BlogController::class, "crear"]);
+    $router->get("/blog/actualizar", [BlogController::class, "actualizar"]);
+    $router->post("/blog/actualizar", [BlogController::class, "actualizar"]);
+    $router->post("/blog/eliminar", [BlogController::class, "eliminar"]);
+
+    // Zona publica
     // rutas para las paginas de los usuarios
     $router->get("/", [PaginaController::class, "index"]);
     $router->get("/nosotros", [PaginaController::class, "nosotros"]);
@@ -36,19 +45,10 @@ try {
     $router->get("/contacto", [PaginaController::class, "contacto"]);
     $router->post("/contacto", [PaginaController::class, "contacto"]);
 
-    // CRUD de Blog
-    $router->get("/admin/blogs", [BlogController::class, "blog"]);
-    $router->get("/admin/blogs/crear", [BlogController::class, "crear"]);
-    $router->post("/admin/blogs/crear", [BlogController::class, "crear"]);
-    $router->get("/admin/blogs/actualizar", [BlogController::class, "actualizar"]);
-    $router->post("/admin/blogs/actualizar", [BlogController::class, "actualizar"]);
-    $router->post("/admin/blogs/eliminar", [BlogController::class, "eliminar"]);
-
     // Login y autenticacion
     $router->get("/login", [LoginController::class, "login"]);
     $router->post("/login", [LoginController::class, "login"]);
     $router->get("/logout", [LoginController::class, "logout"]);
-
 
     $router->comprobarRutas();
 } catch (\Throwable $th) {

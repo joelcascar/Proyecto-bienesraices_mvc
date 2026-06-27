@@ -1,47 +1,58 @@
 .derecha{
-   display: flex; 
-   flex-direction: column;
-   align-items: center;
-   @include tablet {
-    align-items: flex-end;
-   }
-   .dark-mode-boton{
-    width: 3rem;
-    margin: 3rem 0 2rem 0;
-    filter: invert(100%);
-    &:hover{
-        cursor: pointer;
-    }
-    @include tablet {
-        margin-top: 0;
-    }
-   }
-}
-
-.barra{
     display: flex;
     flex-direction: column;
     align-items: center;
+    
+    @include tablet{
+        align-items: flex-end;
+    }
+
+    .dark-mode-boton{
+        width: 3rem;
+        height: auto;
+        margin: 3rem 0;
+        filter: invert(100%); // propiedad para modificar la apariencia de una imagen.
+
+        @include tablet {
+            margin: 0 0 2rem 0;
+            &:hover{
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+.barra{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
     padding-top: 3rem;
-    @include tablet {
+
+
+    @include tablet{
         flex-direction: row;
         justify-content: space-between;
         align-items: flex-end;
     }
 }
+
 .navegacion{
-    
-    visibility: hidden;
-    opacity: 0;
+
+
+    visibility: hidden; // esto sirve para ocultar la navegacion y se pueda animar, en lugar del display: none, la diferencia es que solo oculta y no lo desaparece;
+    opacity: 0; // sirve para poner transparencia al elemento.
     height: 0;
-    transition: visibility .3s ease-in-out, opacity .5s linear;
-    @include tablet {
+    transition: visibility .3s ease-in-out,
+                opacity .3s linear,
+                height .5s linear;
+    
+
+    @include tablet{
         display: flex;
-        gap: 2rem;
-        /* place-items: center; */ //centrar los elementos en el centro
         align-items: center;
-        opacity: 1;
         visibility: visible;
+        opacity: 1;
+        transition: none;
     }
     a{
         color: $blanco;
@@ -50,25 +61,41 @@
         display: block;
         text-align: center;
 
-        @include tablet {
+        @include tablet{
+            margin-right: 2rem;
             font-size: 1.8rem;
+            &:last-of-type{
+                margin-right: 0;
+            }
         }
     }
+
+    &.mostrar{
+        // primera forma de ordenar la navegacion
+        /*
+        display: flex;
+        flex-direction: column;
+        @include tablet{
+            flex-direction: row;
+        }
+        */
+        
+        visibility: visible;
+        opacity: 1;
+        height: auto;
+    }
 }
 
-/* Menu de hamburguesa */
+// menu de hamburguesa
+
 .mobile-menu{
-    @include tablet {
+
+    @include tablet{
         display: none;
     }
+
     img{
         width: 5rem;
+        // margin: 0 auto; // alineado al centro
     }
 }
-
-.mostrar{
-    visibility: visible;
-    opacity: 1;
-    height: auto;
-}
-

@@ -5,7 +5,7 @@
             <?php echo $error; ?>
         </div>
     <?php endforeach; ?>
-    <form method="POST" class="formulario" action="/public/index.php/login">
+    <form method="POST" class="formulario" action="/login">
         <fieldset>
             <legend>Email y Password</legend>
             <label for="email">Email</label>

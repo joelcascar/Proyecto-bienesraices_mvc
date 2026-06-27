@@ -1,4 +1,3 @@
-/* Base */
 @import 'base/normalize';
 @import 'base/variables';
 @import 'base/mixins';
@@ -7,22 +6,17 @@
 @import 'base/botones';
 @import 'base/darkMode';
 
-/* Layout */
-@import "layout/header";
-@import "layout/footer";
-@import "layout/navegacion";
-@import "layout/iconos";
-@import "layout/anuncios";
-@import "layout/contactar";
-@import "layout/inferior";
-@import "layout/testimoniales";
-@import "layout/formulario";
+// UI
+@import 'layout/header';
+@import 'layout/footer';
+@import 'layout/navegacion';
+@import 'layout/iconos';
+@import 'layout/anuncios';
+@import 'layout/contactar';
+@import 'layout/inferior';
+@import 'layout/testimoniales';
+@import 'layout/formulario';
 
-
-/* Paginas internas */
-@import "internas/nosotros";
-@import "internas/admin";
-
-
-
-
+// Páginas internas
+@import 'internas/nosotros';
+@import 'internas/admin';

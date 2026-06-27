@@ -9,14 +9,14 @@
     ?>
 
     <div class="alinear-derecha">
-        <a href="/public/index.php/propiedades" class="boton-verde">Ver todas</a>
+        <a href="/propiedades" class="boton-verde">Ver todas</a>
     </div>
 </section>
 
 <section class="imagen-contacto">
     <h2>Encuentra la casa de tus sueños</h2>
     <p>Llena el formulario de contacto y un asesor se pondra en contacto contigo a la brevedad</p>
-    <a href="/public/index.php/contacto" class="boton-amarillo-chico">Contactanos</a>
+    <a href="/contacto" class="boton-amarillo-chico">Contactanos</a>
 </section>
 
 <div class="contenedor seccion seccion-inferior">
@@ -25,12 +25,10 @@
         <?php foreach ($blogs as $blog): ?>
             <article class="entrada-blog">
                 <div class="imagen">
-                    <picture>
-                        <img loading="lazy" width="200" height="300" src="/public/imagenes/<?php echo $blog->imagen; ?>" alt="Texto Entrada Blog">
-                    </picture>
+                    <img loading="lazy" src="/imagenes/<?php echo $blog->imagen; ?>" alt="Texto Entrada Blog">
                 </div>
                 <div class="texto-entrada">
-                    <a href="/public/index.php/entrada?id=<?php echo $blog->id; ?>">
+                    <a href="/entrada?id=<?php echo $blog->id; ?>">
                         <h4><?php echo $blog->titulo; ?></h4>
                         <p class="informacion-meta">Escrito el: <span><?php echo $blog->fecha; ?></span> por: <span><?php echo $blog->creador; ?></span></p>
                         <p><?php echo $blog->contenido; ?></p>

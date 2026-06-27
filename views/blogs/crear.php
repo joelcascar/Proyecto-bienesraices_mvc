@@ -5,7 +5,7 @@
             <?php echo $error; ?>
         </div>
     <?php } ?>
-    <a href="/public/index.php/admin/blogs" class="boton-azul">Volver</a>
+    <a href="/admin" class="boton-azul">Volver</a>
     <form class="formulario" method="POST" enctype="multipart/form-data">
         <?php include __DIR__ . "/formulario.php"; ?>
         <input type="submit" class="boton-azul" value="Crear Blog">

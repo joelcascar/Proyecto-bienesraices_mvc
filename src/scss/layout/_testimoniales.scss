@@ -3,24 +3,28 @@
     font-size: 2.4rem;
     padding: 2rem;
     color: $blanco;
-    border-radius: 4rem;
+    border-radius: 2rem;
+   
+
     blockquote{
         padding-left: 5rem;
         position: relative;
+
         &:before{
-            content: "";
-            background-image: url(./../../../public/build/img/comilla.svg);
+            content: '';
+            background-image: url(../img/comilla.svg);
             background-repeat: no-repeat;
-            height: 8rem;
             width: 6rem;
-            display: block;
+            height: 8rem;
+            display:block;
             position: absolute;
-            top: 0;
+            top:  0;
             left: -2rem;
         }
     }
     p{
         text-align: right;
         color: $blanco;
+        font-weight: $bold;
     }
 }

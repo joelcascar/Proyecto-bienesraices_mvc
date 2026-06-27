@@ -5,6 +5,7 @@ namespace Controllers;
 use MVC\Router;
 use Model\Propiedad;
 use Model\Vendedor;
+use Model\Blog;
 // Importamos el driver del manager de imagenes.
 use Intervention\Image\Drivers\Gd\Driver;
 // Importamos el manejador de imagenes y el alias se va a llamr image
@@ -17,11 +18,13 @@ class PropiedadController
 
         $propiedades = Propiedad::all();
         $vendedores = Vendedor::all();
+        $blogs = Blog::all();
         $resultado = $_GET["resultado"] ?? null;
         $router->render("propiedades/admin", [
             "propiedades" => $propiedades,
             "vendedores" => $vendedores,
-            "resultado" => $resultado
+            "resultado" => $resultado,
+            "blogs" => $blogs
         ]);
     }
     public static function crear(Router $router)
@@ -65,7 +68,7 @@ class PropiedadController
                 }
 
                 // Llamamos al metodo guardar
-                $propiedad->guardar("admin");
+                $propiedad->guardar("/admin");
             }
         }
 
@@ -78,7 +81,7 @@ class PropiedadController
     public static function actualizar(Router $router)
     {
 
-        $id = validarORedireccionar("/bienesraicesMVC/public/index.php");
+        $id = validarORedireccionar("/admin");
         $propiedad = Propiedad::find($id);
         $vendedores = Vendedor::all();
         $errores = Propiedad::getErrores();
@@ -112,7 +115,7 @@ class PropiedadController
                     // almacenar la imagen 
                     $imagen->save(CARPETA_IMAGENES . $nombreImagen);
                 }
-                $propiedad->guardar("admin");
+                $propiedad->guardar("/admin");
             }
         }
 
@@ -133,7 +136,7 @@ class PropiedadController
                 $tipo = $_POST["tipo"];
                 if (validarTipoContenido($tipo)) {
                     $propiedad = Propiedad::find($id);
-                    $propiedad->eliminar("admin");
+                    $propiedad->eliminar("/admin");
                 }
             }
         }

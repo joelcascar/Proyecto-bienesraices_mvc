@@ -9,7 +9,6 @@ class LoginController
 {
     public static function login(Router $router)
     {
-
         $auth = '';
         $errores = [];
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -43,6 +42,6 @@ class LoginController
     {
         session_start();
         $_SESSION = [];
-        header("location: /public/index.php");
+        header("location: /");
     }
 }

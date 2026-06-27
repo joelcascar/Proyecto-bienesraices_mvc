@@ -62,6 +62,6 @@ class Admin extends ActiveRecord
         $_SESSION["usuario"] = $this->email;
         $_SESSION["login"] = true;
         // redireccionar al usuario
-        header("location: /public/index.php/admin");
+        header("location: /admin");
     }
 }
