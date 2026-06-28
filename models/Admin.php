@@ -38,7 +38,7 @@ class Admin extends ActiveRecord
         $query = self::$db->query($sql);
 
         if (!$query->num_rows) {
-            self::$errores[] = "ERROR: El email no existe";
+            self::$errores[] = "ERROR: El email es incorrecto o no existe";
             return;
         }
         return $query;
@@ -46,6 +46,7 @@ class Admin extends ActiveRecord
 
     public function comprobarPassword($query)
     {
+        // obtenemos el password de la base de datos.
         $usuario = $query->fetch_object();
         $autenticado = password_verify($this->password, $usuario->password);
         if (!$autenticado) {

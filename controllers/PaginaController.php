@@ -61,26 +61,27 @@ class PaginaController
     public static function contacto(Router $router)
     {
         $mensaje = null;
+
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             $resultados = $_POST["contacto"];
             // crear una instancia de PHPMailer
             $mail = new PHPMailer();
-            // configurar SMTP
-            $mail->isSMTP();
-            $mail->Host = 'sandbox.smtp.mailtrap.io';
-            $mail->SMTPAuth = true;
-            $mail->Port = 2525;
-            $mail->Username = 'a60a068729aa58';
-            $mail->Password = '32399c6e84be21';
-            $mail->SMTPSecure = "tls";
+            // configurar SMTP (los datos los vamos a obtener de mailtrap)
+            $mail->isSMTP(); // habilitamos el envio SMTP
+            $mail->Host = 'sandbox.smtp.mailtrap.io'; // el host de mailtrap
+            $mail->SMTPAuth = true; // Nos va a permitir autenticarnnos.
+            $mail->Username = 'a60a068729aa58'; // añadimos el usuario para autenticarnos.
+            $mail->Password = '32399c6e84be21'; // añadimos el password para autenticación.
+            $mail->Port = 2525; // va a ser el puerto.
+            $mail->SMTPSecure = "tls"; // Los email seran seguros
             // configurar el contenido del mail
-            $mail->setFrom("admin@bienesraices.com");
-            $mail->addAddress("admin@bienesraices.com", "BienesRaices.com");
-            $mail->Subject = "Tienes un nuevo Mensaje";
+            $mail->setFrom("admin@bienesraices.com"); // Correo desde donde se envia
+            $mail->addAddress("admin@bienesraices.com", "BienesRaices.com"); // correo hacia donde llega.
+            $mail->Subject = "Tienes un nuevo Mensaje"; // asunto del correo
             //habilitar HTML
-            $mail->isHTML(true);
-            $mail->CharSet = "UTF-8";
+            $mail->isHTML(true); // haibilitamos el HTML
+            $mail->CharSet = "UTF-8"; // Definimos el tipo de set, en este caso va a ser español
 
             // Definir el contenido
             $contenido = "<html>";
@@ -88,13 +89,13 @@ class PaginaController
             $contenido .= "<p> Nombre: {$resultados["nombre"]} </p>";
             //Enviar de forma condicional algunos campos de email o telefono
             if ($resultados["contacto"] === "telefono") {
-                $contenido .= "<p> Eligio ser contactado por teléfono </p>";
+                $contenido .= "<p> Eligió ser contactado por teléfono </p>";
                 $contenido .= "<p> Telefono: {$resultados["telefono"]} </p>";
                 $contenido .= "<p> Fecha: {$resultados["fecha"]} </p>";
                 $contenido .= "<p> Hora: {$resultados["hora"]} </p>";
             } else {
                 // Es email, entonces agregamos el campo de email
-                $contenido .= "<p> Eligio ser contactado por email </p>";
+                $contenido .= "<p> Eligió ser contactado por email </p>";
                 $contenido .= "<p> Email: {$resultados["email"]} </p>";
             }
             $contenido .= "<p> Mensaje: {$resultados["mensaje"]} </p>";

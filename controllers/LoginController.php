@@ -9,7 +9,7 @@ class LoginController
 {
     public static function login(Router $router)
     {
-        $auth = '';
+        $auth = new Admin;
         $errores = [];
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $auth = new Admin($_POST["usuarios"]);
@@ -21,6 +21,7 @@ class LoginController
                 $query = $auth->existeUsuario();
                 if (!$query) {
                     $errores = Admin::getErrores();
+                    $auth->email = '';
                 } else {
                     // verificar si el password es correcto
                     $autenticado = $auth->comprobarPassword($query);

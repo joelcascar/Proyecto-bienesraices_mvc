@@ -37,7 +37,7 @@ if (!isset($inicio)) {
                     <img class="dark-mode-boton" src="/build/img/dark-mode.svg" alt="imagen dark mode">
                     <nav class="navegacion">
                         <?php if ($auth) { ?>
-                            <a href="/admin/">Admin</a>
+                            <a href="/admin">Admin</a>
                         <?php } ?>
                         <a href="/nosotros">Nosotros</a>
                         <a href="/propiedades">Anuncios</a>

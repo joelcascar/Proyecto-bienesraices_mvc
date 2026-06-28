@@ -68,7 +68,7 @@ class BlogController
 
     public static function actualizar(Router $router)
     {
-        $id = validarORedireccionar("/bienesraicesMVC/public/index.php/admin/blogs");
+        $id = validarORedireccionar("/admin");
         $blog = Blog::find($id);
         $errores = Blog::getErrores();
 
@@ -83,20 +83,25 @@ class BlogController
             // subida de archivos
             // Generar un nombre unico 
             $nombreImagen = md5(uniqid(rand(), true)) . ".jpg";
+            $imagen = NULL;
             // comprobamos que si existe una imagen la crea y la redimensiona.
             if ($_FILES["blog"]["tmp_name"]["imagen"]) {
-                // crear imagen y cambiarle el tamaño con Intervention/image
-                $image = Image::make($_FILES["blog"]["tmp_name"]["imagen"])->fit(800, 600);
-                // asignamos el nombre de la imagen al metodo setImagen 
-                $blog->setImagen($nombreImagen);
+                // Configuramos el manager de imagenes con el drive por defecto.
+                $manager = Image::usingDriver(Driver::class); // el Driver::class me asignara el driver por defecto.
+                // Leemos la imagen
+                $imagen = $manager->decode($_FILES['blog']['tmp_name']['imagen']);
+                // Cambiamos el tamaño de la imagen
+                $imagen->cover(800, 600); // Primero pone el tamaño de la imgen, despues lo coloca en el centro y corta el exceso.
+                // Asignamos el nombre mediante el método setImagen()
+                $blog->setImagen($nombreImagen); // vamos a agregar el nombre de la imagen a la instancia actual ($propiedad).
             }
             if (empty($errores)) {
 
                 if ($_FILES["blog"]["tmp_name"]["imagen"]) {
-                    // almacenar la imagen 
-                    $image->save(CARPETA_IMAGENES . $nombreImagen);
+                    //guardar la imagen en el servidor
+                    $imagen->save(CARPETA_IMAGENES . $nombreImagen);
                 }
-                $blog->guardar("admin/blogs");
+                $blog->guardar("/admin");
             }
         }
 
@@ -116,7 +121,7 @@ class BlogController
                 $tipo = $_POST["tipo"];
                 if (validarTipoContenido($tipo)) {
                     $blog = Blog::find($id);
-                    $blog->eliminar("admin/blogs");
+                    $blog->eliminar("/admin");
                 }
             }
         }

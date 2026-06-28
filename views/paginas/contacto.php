@@ -44,6 +44,7 @@
                 <label for="opcion-email">E-mail</label>
                 <input type="radio" value="email" id="opcion-email" name="contacto[contacto]" required>
             </div>
+
             <div id="contacto"></div>
         </fieldset>
         <input type="submit" value="Enviar" class="boton-verde">

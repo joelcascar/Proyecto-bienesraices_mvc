@@ -33,11 +33,11 @@ function eventListeners() {
 
   // Muestra campos condicionales
   const mostrarContacto = document.querySelectorAll(
-    'input[name="contacto[contacto]"]'
+    'input[name="contacto[contacto]"]',
   );
   // recorremos el arreglo mostrarContacto con un foreach
   mostrarContacto.forEach((input) =>
-    input.addEventListener("click", () => mostrarMetodosContacto(input.value))
+    input.addEventListener("click", () => mostrarMetodosContacto(input.value)),
   );
 }
 function navegacionResponsive() {
@@ -56,7 +56,7 @@ function mostrarMetodosContacto(e) {
   const contactoDiv = document.querySelector("#contacto");
   if (e === "telefono") {
     contactoDiv.innerHTML = `
-    <label for="telefono">Numero Telefonico</label>
+    <label for="telefono">Número Telefónico</label>
     <input type="tel" placeholder="Tu telefono" id="telefono" name="contacto[telefono]">
 
     <p>Elija la fecha y la hora para la llamada</p>
